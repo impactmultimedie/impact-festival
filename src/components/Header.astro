@@ -1,0 +1,22 @@
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header>
+	<a class="brand" href="/" aria-label="Impact Festival home"><span>Impact</span><small>Festival</small></a>
+	<nav aria-label="Primary navigation"><a href="/om">About</a><a href="/program">Program</a><a href="#tickets">Tickets</a><a href="#newsletter">Newsletter</a></nav>
+	<button class="menu" type="button" aria-label="Open navigation" aria-expanded="false">Menu <span aria-hidden="true">☰</span></button>
+</header>
+<script>
+	const button = document.querySelector<HTMLButtonElement>('.menu');
+	const nav = document.querySelector<HTMLElement>('header nav');
+	button?.addEventListener('click', () => { const isOpen = button.getAttribute('aria-expanded') === 'true'; button.setAttribute('aria-expanded', String(!isOpen)); nav?.classList.toggle('is-open', !isOpen); });
+</script>
+<style>
+	.skip-link { position:fixed; top:.5rem; left:.5rem; z-index:20; padding:.75rem; background:#fff; transform:translateY(-150%); }
+	.skip-link:focus { transform:translateY(0); }
+	header { position:relative; z-index:10; display:flex; height:5rem; align-items:center; justify-content:space-between; padding:1.1rem 1.25rem; background:var(--surface-light); border-bottom:3px solid #000; }
+	.brand { display:flex; flex-direction:column; color:#000; font-family:var(--font-display); line-height:.72; text-decoration:none; text-transform:uppercase; }
+	.brand span { font-size:1.45rem; } .brand small { margin-top:.35rem; font-size:.65rem; letter-spacing:.25rem; }
+	nav { position:absolute; top:100%; right:0; left:0; display:none; flex-direction:column; gap:1rem; padding:1.5rem; background:var(--surface-light); border-bottom:3px solid #000; }
+	nav.is-open { display:flex; } nav a,.menu { font:600 .85rem var(--font-body); text-transform:uppercase; } nav a { text-decoration-thickness:1px; text-underline-offset:.25rem; }
+	.menu { display:flex; gap:.5rem; align-items:center; padding:.65rem .75rem; color:#000; background:transparent; border:1px solid #000; cursor:pointer; }
+	@media (min-width:48rem) { header { height:7rem; padding-inline:4%; } .brand span { font-size:2.2rem; } .brand small { font-size:1rem; letter-spacing:.38rem; } nav { position:static; display:flex; flex-direction:row; gap:1.9rem; padding:0; border:0; } .menu { display:none; } }
+</style>

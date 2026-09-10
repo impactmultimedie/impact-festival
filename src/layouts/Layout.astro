@@ -1,23 +1,26 @@
+---
+interface Props { title?: string; description?: string; }
+const { title = 'Impact Festival 2026', description = 'Music, art, talks, workshops and food designed to increase our impact.' } = Astro.props;
+---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
 		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
-	</body>
+	<body><slot /></body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+	:root { --brand-red:#ff0505; --surface-light:#c7c7c4; --font-display:'Archivo',sans-serif; --font-body:'Figtree',sans-serif; }
+	*,*::before,*::after { box-sizing:border-box; }
+	html,body { margin:0; min-width:320px; min-height:100%; }
+	body { font-family:var(--font-body); background:var(--surface-light); color:#000; }
+	a { color:inherit; }
+	:focus-visible { outline:3px solid var(--brand-red); outline-offset:3px; }
 </style>

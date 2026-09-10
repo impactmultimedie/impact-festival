@@ -1,11 +1,39 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Newsletter from '../components/Newsletter.astro';
+import ProgramCard from '../components/ProgramCard.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const program = [
+	{ category: 'MUSIC', title: 'LIVE MUSIC' }, { category: 'ART', title: 'EXHIBITIONS' },
+	{ category: 'TALKS', title: 'IDEAS THAT MOVE' }, { category: 'WORKSHOPS', title: 'MAKE & PARTICIPATE' },
+	{ category: 'FOOD', title: 'IMPACT DINNER' }, { category: 'COMMUNITY', title: 'ACT LOCAL' },
+];
 ---
-
 <Layout>
-	<Welcome />
+	<Header />
+	<main id="main-content">
+		<Hero />
+		<section class="statement" aria-labelledby="statement-title">
+			<h2 id="statement-title">Culture with<br />consequence</h2>
+			<p>Two days of music, art, talks, workshops and food — designed to turn shared experiences into local impact.</p>
+		</section>
+		<section class="program" aria-labelledby="program-title">
+			<h2 id="program-title">Explore the<br />program</h2>
+			<div class="program-grid">{program.map((item) => <ProgramCard {...item} />)}</div>
+		</section>
+		<Newsletter />
+	</main>
+	<Footer />
 </Layout>
+<style>
+	.statement,.program { padding:3.5rem 1.5rem; background:var(--surface-light); }
+	.statement { display:grid; gap:1.75rem; }
+	h2 { margin:0; font-family:var(--font-display); font-size:clamp(2.35rem,10vw,3.4rem); line-height:.95; text-transform:uppercase; }
+	.statement h2 { color:var(--brand-red); }
+	.statement p { max-width:35rem; margin:0; font-size:1.125rem; line-height:1.5; }
+	.program h2 { margin-bottom:1.5rem; font-size:2rem; }
+	.program-grid { display:grid; gap:1rem; }
+	@media (min-width:48rem) { .statement { grid-template-columns:1fr 1fr; align-items:center; padding:5rem 5%; } .program { padding:4.5rem 5%; } .program h2 { display:none; } .program-grid { grid-template-columns:repeat(3,1fr); gap:1.5rem; } }
+</style>
